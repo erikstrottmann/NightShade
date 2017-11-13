@@ -12,7 +12,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BBB026251FB978C3003EB312 /* NightShade.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NightShade.saver; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBB026251FB978C3003EB312 /* Night Shade.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Night Shade.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB026281FB978C3003EB312 /* NightShadeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NightShadeView.h; sourceTree = "<group>"; };
 		BBB0262A1FB978C3003EB312 /* NightShadeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NightShadeView.m; sourceTree = "<group>"; };
 		BBB0262C1FB978C3003EB312 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		BBB026261FB978C3003EB312 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BBB026251FB978C3003EB312 /* NightShade.saver */,
+				BBB026251FB978C3003EB312 /* Night Shade.saver */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,7 +84,7 @@
 			);
 			name = NightShade;
 			productName = NightShade;
-			productReference = BBB026251FB978C3003EB312 /* NightShade.saver */;
+			productReference = BBB026251FB978C3003EB312 /* Night Shade.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -253,7 +253,7 @@
 				INFOPLIST_FILE = NightShade/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erikstrottmann.NightShade;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Night Shade";
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -267,7 +267,7 @@
 				INFOPLIST_FILE = NightShade/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erikstrottmann.NightShade;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Night Shade";
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Release;
