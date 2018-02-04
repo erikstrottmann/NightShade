@@ -9,9 +9,14 @@
 #import "NightShadeView.h"
 
 @interface NightShadeView ()
-@property (nonatomic) NSFont *font;
+
 @property (nonatomic) NSCalendar *calendar;
 @property (nonatomic) NSDateFormatter *dateFormatter;
+
+@property (nonatomic) NSFont *font;
+@property (nonatomic) NSColor *darkTextColor;
+@property (nonatomic) NSColor *lightTextColor;
+
 @end
 
 @implementation NightShadeView
@@ -22,11 +27,13 @@
 {
     self = [super initWithFrame:frame isPreview:isPreview];
     if (self) {
-        _font = [NSFont monospacedDigitSystemFontOfSize:40 weight:NSFontWeightRegular];
-        _calendar = [NSCalendar currentCalendar];
+        _calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
         _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateStyle:NSDateFormatterNoStyle];
-        [_dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+        [_dateFormatter setDateFormat:@"HH:mm:ss"];
+
+        _font = [NSFont monospacedDigitSystemFontOfSize:40 weight:NSFontWeightLight];
+        _darkTextColor = [NSColor colorWithWhite:0 alpha:0.7];
+        _lightTextColor = [NSColor colorWithWhite:1 alpha:0.7];
 
         [self setAnimationTimeInterval:1/30];
     }
@@ -62,12 +69,52 @@
 
 - (NSColor *)backgroundColorFromDate:(NSDate *)date
 {
-    return [NSColor lightGrayColor];
+    NSCalendarUnit units = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    NSDateComponents *dateComponents = [[self calendar] components:units fromDate:date];
+
+    CGFloat red = (CGFloat) [dateComponents valueForComponent:NSCalendarUnitHour];
+    CGFloat green = (CGFloat) [dateComponents valueForComponent:NSCalendarUnitMinute];
+    CGFloat blue = (CGFloat) [dateComponents valueForComponent:NSCalendarUnitSecond];
+
+    CGFloat maxRed, maxGreen, maxBlue;
+    BOOL useTimeAsPercentage = YES;
+    if (useTimeAsPercentage) {
+        maxRed = (CGFloat) NSMaxRange([[self calendar] maximumRangeOfUnit:NSCalendarUnitHour]);
+        maxGreen = (CGFloat) NSMaxRange([[self calendar] maximumRangeOfUnit:NSCalendarUnitMinute]);
+        maxBlue = (CGFloat) NSMaxRange([[self calendar] maximumRangeOfUnit:NSCalendarUnitSecond]);
+    } else {
+        maxRed = 0xFF;
+        maxGreen = 0xFF;
+        maxBlue = 0xFF;
+    }
+
+    return [NSColor colorWithRed:red / maxRed
+                           green:green / maxGreen
+                            blue:blue / maxBlue
+                           alpha:1];
 }
 
 - (NSColor *)foregroundColorForBackgroundColor:(NSColor *)backgroundColor
 {
-    return [NSColor darkGrayColor];
+    if ([self luminanceOfColor:backgroundColor] > 0.5) {
+        return [self darkTextColor];
+    } else {
+        return [self lightTextColor];
+    }
+}
+
+/**
+ The luminance (perceived brightness) of the color, as a value in the range 0–1.0.
+
+ Calculated using the W3C formula from http://www.w3.org/WAI/ER/WD-AERT/#color-contrast
+
+ @param color The color to calculate the luminance of.
+ @return The luminance of the given color.
+ */
+- (CGFloat)luminanceOfColor:(NSColor *)color
+{
+    // ((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
+    return 0;
 }
 
 - (NSAttributedString *)stringFromDate:(NSDate *)date color:(NSColor *)color
