@@ -18,6 +18,8 @@
 @property (nonatomic) NSColor *darkTextColor;
 @property (nonatomic) NSColor *lightTextColor;
 
+@property (nonatomic) BOOL previousForegroundColorWasDark;
+
 @end
 
 @implementation NightShadeView
@@ -39,8 +41,10 @@
             _timeFont = [NSFont monospacedDigitSystemFontOfSize:200 weight:NSFontWeightUltraLight];
             _hexFont = [NSFont monospacedDigitSystemFontOfSize:40 weight:NSFontWeightUltraLight];
         }
-        _darkTextColor = [NSColor colorWithWhite:0 alpha:0.7];
+        _darkTextColor = [NSColor colorWithWhite:0 alpha:0.5];
         _lightTextColor = [NSColor colorWithWhite:1 alpha:0.7];
+
+        _previousForegroundColorWasDark = NO;
 
         [self setAnimationTimeInterval:1/30];
     }
@@ -98,9 +102,12 @@
 
 - (NSColor *)foregroundColorForBackgroundColor:(NSColor *)backgroundColor
 {
-    if ([self luminanceOfColor:backgroundColor] > 0.5) {
+    CGFloat luminance = [self luminanceOfColor:backgroundColor];
+    if (luminance > 0.7 || (luminance > 0.65 && [self previousForegroundColorWasDark])) {
+        [self setPreviousForegroundColorWasDark:YES];
         return [self darkTextColor];
     } else {
+        [self setPreviousForegroundColorWasDark:NO];
         return [self lightTextColor];
     }
 }
@@ -115,8 +122,12 @@
  */
 - (CGFloat)luminanceOfColor:(NSColor *)color
 {
-    // ((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
-    return 0;
+    const CGFloat *colorComponents = CGColorGetComponents([color CGColor]);
+    CGFloat red = colorComponents[0];
+    CGFloat green = colorComponents[1];
+    CGFloat blue = colorComponents[2];
+
+    return (red * 299 + green * 587 + blue * 114) / 1000;
 }
 
 - (NSAttributedString *)timeStringFromDate:(NSDate *)date withForegroundColor:(NSColor *)foregroundColor
