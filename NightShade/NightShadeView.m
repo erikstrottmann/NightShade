@@ -13,7 +13,8 @@
 @property (nonatomic) NSCalendar *calendar;
 @property (nonatomic) NSDateFormatter *dateFormatter;
 
-@property (nonatomic) NSFont *font;
+@property (nonatomic) NSFont *timeFont;
+@property (nonatomic) NSFont *hexFont;
 @property (nonatomic) NSColor *darkTextColor;
 @property (nonatomic) NSColor *lightTextColor;
 
@@ -32,9 +33,11 @@
         [_dateFormatter setDateFormat:@"HH:mm:ss"];
 
         if (isPreview) {
-            _font = [NSFont monospacedDigitSystemFontOfSize:40 weight:NSFontWeightUltraLight];
+            _timeFont = [NSFont monospacedDigitSystemFontOfSize:40 weight:NSFontWeightUltraLight];
+            _hexFont = [NSFont monospacedDigitSystemFontOfSize:8 weight:NSFontWeightUltraLight];
         } else {
-            _font = [NSFont monospacedDigitSystemFontOfSize:200 weight:NSFontWeightUltraLight];
+            _timeFont = [NSFont monospacedDigitSystemFontOfSize:200 weight:NSFontWeightUltraLight];
+            _hexFont = [NSFont monospacedDigitSystemFontOfSize:40 weight:NSFontWeightUltraLight];
         }
         _darkTextColor = [NSColor colorWithWhite:0 alpha:0.7];
         _lightTextColor = [NSColor colorWithWhite:1 alpha:0.7];
@@ -53,10 +56,13 @@
     [backgroundColor set];
     NSRectFill([self frame]);
 
-    NSAttributedString *timeString = [self stringFromDate:date color:foregroundColor];
-    NSRect timeRect = [self rectForString:timeString];
-
+    NSAttributedString *timeString = [self timeStringFromDate:date withForegroundColor:foregroundColor];
+    NSRect timeRect = [self centeredRectForString:timeString];
     [timeString drawInRect:timeRect];
+
+    NSAttributedString *hexString = [self rgbHexStringFromColor:backgroundColor withForegroundColor:foregroundColor];
+    NSRect hexRect = [self cornerRectForString:hexString];
+    [hexString drawInRect:hexRect];
 }
 
 - (BOOL)hasConfigureSheet
@@ -80,17 +86,9 @@
     CGFloat green = (CGFloat) [dateComponents valueForComponent:NSCalendarUnitMinute];
     CGFloat blue = (CGFloat) [dateComponents valueForComponent:NSCalendarUnitSecond];
 
-    CGFloat maxRed, maxGreen, maxBlue;
-    BOOL useTimeAsPercentage = YES;
-    if (useTimeAsPercentage) {
-        maxRed = (CGFloat) NSMaxRange([[self calendar] maximumRangeOfUnit:NSCalendarUnitHour]);
-        maxGreen = (CGFloat) NSMaxRange([[self calendar] maximumRangeOfUnit:NSCalendarUnitMinute]);
-        maxBlue = (CGFloat) NSMaxRange([[self calendar] maximumRangeOfUnit:NSCalendarUnitSecond]);
-    } else {
-        maxRed = 0xFF;
-        maxGreen = 0xFF;
-        maxBlue = 0xFF;
-    }
+    CGFloat maxRed = (CGFloat) NSMaxRange([[self calendar] maximumRangeOfUnit:NSCalendarUnitHour]);
+    CGFloat maxGreen = (CGFloat) NSMaxRange([[self calendar] maximumRangeOfUnit:NSCalendarUnitMinute]);
+    CGFloat maxBlue = (CGFloat) NSMaxRange([[self calendar] maximumRangeOfUnit:NSCalendarUnitSecond]);
 
     return [NSColor colorWithRed:red / maxRed
                            green:green / maxGreen
@@ -121,12 +119,12 @@
     return 0;
 }
 
-- (NSAttributedString *)stringFromDate:(NSDate *)date color:(NSColor *)color
+- (NSAttributedString *)timeStringFromDate:(NSDate *)date withForegroundColor:(NSColor *)foregroundColor
 {
     NSString *dateString = [[self dateFormatter] stringFromDate:date];
 
-    NSDictionary<NSAttributedStringKey, id> *attributes = @{NSFontAttributeName: [self font],
-                                                            NSForegroundColorAttributeName: color};
+    NSDictionary<NSAttributedStringKey, id> *attributes = @{NSFontAttributeName: [self timeFont],
+                                                            NSForegroundColorAttributeName: foregroundColor};
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:dateString
                                                                                          attributes:attributes];
 
@@ -154,11 +152,30 @@
     return [regex matchesInString:string options:0 range:NSMakeRange(0, string.length)];
 }
 
-- (NSRect)rectForString:(NSAttributedString *)string
+- (NSAttributedString *)rgbHexStringFromColor:(NSColor *)color withForegroundColor:(NSColor *)foregroundColor
+{
+    const CGFloat *colorComponents = CGColorGetComponents([color CGColor]);
+    long red = lround(colorComponents[0] * 0xFF);
+    long green = lround(colorComponents[1] * 0xFF);
+    long blue = lround(colorComponents[2] * 0xFF);
+    NSString *hexString = [NSString stringWithFormat:@"#%02lX%02lX%02lX", red, green, blue];
+
+    NSDictionary<NSAttributedStringKey, id> *attributes = @{NSFontAttributeName: [self hexFont],
+                                                            NSForegroundColorAttributeName: foregroundColor};
+    return [[NSAttributedString alloc] initWithString:hexString attributes:attributes];
+}
+
+- (NSRect)centeredRectForString:(NSAttributedString *)string
 {
     NSSize size = [string size];
     NSRect stringRect = NSMakeRect(0, 0, size.width, size.height);
     return SSCenteredRectInRect(stringRect, [self frame]);
+}
+
+- (NSRect)cornerRectForString:(NSAttributedString *)string
+{
+    NSSize size = [string size];
+    return NSMakeRect(size.height / 2, size.height * 7 / 24, size.width, size.height);
 }
 
 @end
