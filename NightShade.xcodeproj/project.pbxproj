@@ -9,11 +9,6 @@
 /* Begin PBXBuildFile section */
 		BBB026291FB978C3003EB312 /* NightShadeView.h in Headers */ = {isa = PBXBuildFile; fileRef = BBB026281FB978C3003EB312 /* NightShadeView.h */; };
 		BBB0262B1FB978C3003EB312 /* NightShadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB0262A1FB978C3003EB312 /* NightShadeView.m */; };
-		BBB0263A1FB97AF9003EB312 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB026391FB97AF9003EB312 /* AppDelegate.m */; };
-		BBB0263C1FB97AF9003EB312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB0263B1FB97AF9003EB312 /* Assets.xcassets */; };
-		BBB0263F1FB97AFA003EB312 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB0263D1FB97AFA003EB312 /* MainMenu.xib */; };
-		BBB026421FB97AFA003EB312 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB026411FB97AFA003EB312 /* main.m */; };
-		BBB026471FB97BE7003EB312 /* NightShadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB0262A1FB978C3003EB312 /* NightShadeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,25 +16,10 @@
 		BBB026281FB978C3003EB312 /* NightShadeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NightShadeView.h; sourceTree = "<group>"; };
 		BBB0262A1FB978C3003EB312 /* NightShadeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NightShadeView.m; sourceTree = "<group>"; };
 		BBB0262C1FB978C3003EB312 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BBB026361FB97AF9003EB312 /* NightShadeDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NightShadeDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBB026381FB97AF9003EB312 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		BBB026391FB97AF9003EB312 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BBB0263B1FB97AF9003EB312 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BBB0263E1FB97AFA003EB312 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		BBB026401FB97AFA003EB312 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BBB026411FB97AFA003EB312 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BBB026431FB97AFA003EB312 /* NightShadeDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NightShadeDebug.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		BBB026211FB978C3003EB312 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BBB026331FB97AF9003EB312 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				BBB026271FB978C3003EB312 /* NightShade */,
-				BBB026371FB97AF9003EB312 /* NightShadeDebug */,
 				BBB026261FB978C3003EB312 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				BBB026251FB978C3003EB312 /* Night Shade.saver */,
-				BBB026361FB97AF9003EB312 /* NightShadeDebug.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,20 +53,6 @@
 				BBB0262C1FB978C3003EB312 /* Info.plist */,
 			);
 			path = NightShade;
-			sourceTree = "<group>";
-		};
-		BBB026371FB97AF9003EB312 /* NightShadeDebug */ = {
-			isa = PBXGroup;
-			children = (
-				BBB026381FB97AF9003EB312 /* AppDelegate.h */,
-				BBB026391FB97AF9003EB312 /* AppDelegate.m */,
-				BBB0263B1FB97AF9003EB312 /* Assets.xcassets */,
-				BBB0263D1FB97AFA003EB312 /* MainMenu.xib */,
-				BBB026401FB97AFA003EB312 /* Info.plist */,
-				BBB026411FB97AFA003EB312 /* main.m */,
-				BBB026431FB97AFA003EB312 /* NightShadeDebug.entitlements */,
-			);
-			path = NightShadeDebug;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,23 +87,6 @@
 			productReference = BBB026251FB978C3003EB312 /* Night Shade.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
-		BBB026351FB97AF9003EB312 /* NightShadeDebug */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BBB026441FB97AFA003EB312 /* Build configuration list for PBXNativeTarget "NightShadeDebug" */;
-			buildPhases = (
-				BBB026321FB97AF9003EB312 /* Sources */,
-				BBB026331FB97AF9003EB312 /* Frameworks */,
-				BBB026341FB97AF9003EB312 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = NightShadeDebug;
-			productName = NightShadeDebug;
-			productReference = BBB026361FB97AF9003EB312 /* NightShadeDebug.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -150,10 +97,6 @@
 				ORGANIZATIONNAME = "Erik Strottmann";
 				TargetAttributes = {
 					BBB026241FB978C3003EB312 = {
-						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
-					};
-					BBB026351FB97AF9003EB312 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 					};
@@ -173,7 +116,6 @@
 			projectRoot = "";
 			targets = (
 				BBB026241FB978C3003EB312 /* NightShade */,
-				BBB026351FB97AF9003EB312 /* NightShadeDebug */,
 			);
 		};
 /* End PBXProject section */
@@ -183,15 +125,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BBB026341FB97AF9003EB312 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BBB0263C1FB97AF9003EB312 /* Assets.xcassets in Resources */,
-				BBB0263F1FB97AFA003EB312 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,28 +139,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BBB026321FB97AF9003EB312 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BBB026471FB97BE7003EB312 /* NightShadeView.m in Sources */,
-				BBB026421FB97AFA003EB312 /* main.m in Sources */,
-				BBB0263A1FB97AF9003EB312 /* AppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		BBB0263D1FB97AFA003EB312 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BBB0263E1FB97AFA003EB312 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BBB0262D1FB978C3003EB312 /* Debug */ = {
@@ -361,36 +273,6 @@
 			};
 			name = Release;
 		};
-		BBB026451FB97AFA003EB312 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = NightShadeDebug/NightShadeDebug.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 75TNSE73KL;
-				INFOPLIST_FILE = NightShadeDebug/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.erikstrottmann.NightShadeDebug;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		BBB026461FB97AFA003EB312 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = NightShadeDebug/NightShadeDebug.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 75TNSE73KL;
-				INFOPLIST_FILE = NightShadeDebug/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.erikstrottmann.NightShadeDebug;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -408,15 +290,6 @@
 			buildConfigurations = (
 				BBB026301FB978C3003EB312 /* Debug */,
 				BBB026311FB978C3003EB312 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BBB026441FB97AFA003EB312 /* Build configuration list for PBXNativeTarget "NightShadeDebug" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BBB026451FB97AFA003EB312 /* Debug */,
-				BBB026461FB97AFA003EB312 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
