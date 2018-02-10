@@ -31,7 +31,11 @@
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateFormat:@"HH:mm:ss"];
 
-        _font = [NSFont monospacedDigitSystemFontOfSize:40 weight:NSFontWeightLight];
+        if (isPreview) {
+            _font = [NSFont monospacedDigitSystemFontOfSize:40 weight:NSFontWeightUltraLight];
+        } else {
+            _font = [NSFont monospacedDigitSystemFontOfSize:200 weight:NSFontWeightUltraLight];
+        }
         _darkTextColor = [NSColor colorWithWhite:0 alpha:0.7];
         _lightTextColor = [NSColor colorWithWhite:1 alpha:0.7];
 
