@@ -8,7 +8,21 @@
 
 #import "NightShadeView.h"
 
+static NSString * const MODULE_NAME = @"com.erikstrottmann.NightShade";
+static NSString * const KEY_SHOW_HEX_CODE = @"showHexCode";
+static NSString * const KEY_TIME_SEPARATOR_OPTION = @"timeSeparatorOption";
+
+typedef NS_ENUM(NSInteger, TimeSeparatorOption) {
+    TimeSeparatorOptionNeverShow = 0,
+    TimeSeparatorOptionFlash,
+    TimeSeparatorOptionAlwaysShow,
+};
+
 @interface NightShadeView ()
+
+@property (nonatomic) IBOutlet NSPanel *configSheet;
+@property (weak) IBOutlet NSButton *showHexCodeCheckBox;
+@property (weak) IBOutlet NSPopUpButton *timeSeparatorsPopUp;
 
 @property (nonatomic) NSCalendar *calendar;
 @property (nonatomic) NSDateFormatter *dateFormatter;
@@ -19,6 +33,9 @@
 @property (nonatomic) NSColor *lightTextColor;
 
 @property (nonatomic) BOOL previousForegroundColorWasDark;
+
+@property (nonatomic) BOOL showsHexCode;
+@property (nonatomic) TimeSeparatorOption timeSeparatorOption;
 
 @end
 
@@ -46,6 +63,13 @@
 
         _previousForegroundColorWasDark = NO;
 
+        ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:MODULE_NAME];
+        [defaults registerDefaults:@{KEY_SHOW_HEX_CODE: @YES,
+                                     KEY_TIME_SEPARATOR_OPTION: @(TimeSeparatorOptionNeverShow)}];
+
+        [self setShowsHexCode:[defaults boolForKey:KEY_SHOW_HEX_CODE]];
+        [self setTimeSeparatorOption:[defaults integerForKey:KEY_TIME_SEPARATOR_OPTION]];
+
         [self setAnimationTimeInterval:1/30];
     }
     return self;
@@ -64,19 +88,46 @@
     NSRect timeRect = [self centeredRectForString:timeString];
     [timeString drawInRect:timeRect];
 
-    NSAttributedString *hexString = [self rgbHexStringFromColor:backgroundColor withForegroundColor:foregroundColor];
-    NSRect hexRect = [self cornerRectForString:hexString];
-    [hexString drawInRect:hexRect];
+    if ([self showsHexCode]) {
+        NSAttributedString *hexString = [self rgbHexStringFromColor:backgroundColor withForegroundColor:foregroundColor];
+        NSRect hexRect = [self cornerRectForString:hexString];
+        [hexString drawInRect:hexRect];
+    }
 }
 
 - (BOOL)hasConfigureSheet
 {
-    return NO;
+    return YES;
 }
 
 - (NSWindow *)configureSheet
 {
-    return nil;
+    if (![self configSheet]) {
+        [[NSBundle bundleForClass:[self class]] loadNibNamed:@"ConfigSheet" owner:self topLevelObjects:nil];
+    }
+
+    [[self showHexCodeCheckBox] setState:[self showsHexCode]];
+    [[self timeSeparatorsPopUp] selectItemAtIndex:[self timeSeparatorOption]];
+
+    return [self configSheet];
+}
+
+#pragma mark IBActions
+
+- (IBAction)cancelConfigSheet:(NSButton *)sender {
+    [[NSApplication sharedApplication] endSheet:[self configSheet]];
+}
+
+- (IBAction)okConfigSheet:(id)sender {
+    [self setShowsHexCode:[[self showHexCodeCheckBox] state]];
+    [self setTimeSeparatorOption:[[self timeSeparatorsPopUp] indexOfSelectedItem]];
+
+    ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:MODULE_NAME];
+    [defaults setBool:[self showsHexCode] forKey:KEY_SHOW_HEX_CODE];
+    [defaults setInteger:[self timeSeparatorOption] forKey:KEY_TIME_SEPARATOR_OPTION];
+    [defaults synchronize];
+
+    [[NSApplication sharedApplication] endSheet:[self configSheet]];
 }
 
 #pragma mark Helpers
@@ -153,8 +204,16 @@
 
 - (BOOL)shouldShowTimeSeparatorForDate:(NSDate *)date
 {
-    NSInteger second = [[self calendar] component:NSCalendarUnitSecond fromDate:date];
-    return second % 2 != 0;
+    switch ([self timeSeparatorOption]) {
+        case TimeSeparatorOptionNeverShow:
+            return NO;
+        case TimeSeparatorOptionFlash: {
+            NSInteger second = [[self calendar] component:NSCalendarUnitSecond fromDate:date];
+            return second % 2 != 0;
+        }
+        case TimeSeparatorOptionAlwaysShow:
+            return YES;
+    }
 }
 
 - (NSArray<NSTextCheckingResult *> *)matchesForTimeSeparatorInString:(NSString *)string

@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB2E30C8202F8EE800AB6F4C /* ConfigSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB2E30C7202F8EE800AB6F4C /* ConfigSheet.xib */; };
 		BBB026291FB978C3003EB312 /* NightShadeView.h in Headers */ = {isa = PBXBuildFile; fileRef = BBB026281FB978C3003EB312 /* NightShadeView.h */; };
 		BBB0262B1FB978C3003EB312 /* NightShadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB0262A1FB978C3003EB312 /* NightShadeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB2E30C7202F8EE800AB6F4C /* ConfigSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigSheet.xib; sourceTree = "<group>"; };
 		BBB026251FB978C3003EB312 /* Night Shade.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Night Shade.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB026281FB978C3003EB312 /* NightShadeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NightShadeView.h; sourceTree = "<group>"; };
 		BBB0262A1FB978C3003EB312 /* NightShadeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NightShadeView.m; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			children = (
 				BBB026281FB978C3003EB312 /* NightShadeView.h */,
 				BBB0262A1FB978C3003EB312 /* NightShadeView.m */,
+				BB2E30C7202F8EE800AB6F4C /* ConfigSheet.xib */,
 				BBB0262C1FB978C3003EB312 /* Info.plist */,
 			);
 			path = NightShade;
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB2E30C8202F8EE800AB6F4C /* ConfigSheet.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
