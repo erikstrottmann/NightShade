@@ -10,6 +10,8 @@
 		BB2E30C8202F8EE800AB6F4C /* ConfigSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB2E30C7202F8EE800AB6F4C /* ConfigSheet.xib */; };
 		BBB026291FB978C3003EB312 /* NightShadeView.h in Headers */ = {isa = PBXBuildFile; fileRef = BBB026281FB978C3003EB312 /* NightShadeView.h */; };
 		BBB0262B1FB978C3003EB312 /* NightShadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB0262A1FB978C3003EB312 /* NightShadeView.m */; };
+		BBF855872030D25900DB2272 /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBF855852030D25900DB2272 /* thumbnail@2x.png */; };
+		BBF855882030D25900DB2272 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = BBF855862030D25900DB2272 /* thumbnail.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,8 @@
 		BBB026281FB978C3003EB312 /* NightShadeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NightShadeView.h; sourceTree = "<group>"; };
 		BBB0262A1FB978C3003EB312 /* NightShadeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NightShadeView.m; sourceTree = "<group>"; };
 		BBB0262C1FB978C3003EB312 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBF855852030D25900DB2272 /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
+		BBF855862030D25900DB2272 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 				BBB026281FB978C3003EB312 /* NightShadeView.h */,
 				BBB0262A1FB978C3003EB312 /* NightShadeView.m */,
 				BB2E30C7202F8EE800AB6F4C /* ConfigSheet.xib */,
+				BBF855862030D25900DB2272 /* thumbnail.png */,
+				BBF855852030D25900DB2272 /* thumbnail@2x.png */,
 				BBB0262C1FB978C3003EB312 /* Info.plist */,
 			);
 			path = NightShade;
@@ -129,6 +135,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB2E30C8202F8EE800AB6F4C /* ConfigSheet.xib in Resources */,
+				BBF855872030D25900DB2272 /* thumbnail@2x.png in Resources */,
+				BBF855882030D25900DB2272 /* thumbnail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
