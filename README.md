@@ -11,7 +11,7 @@ requires Flash, Night Shade has no dependencies.
 
 ## Installation
 
-Download `Night Shade.saver.zip` from
+Download `NightShade.saver.zip` from
 [the latest GitHub release](https://github.com/realm/SwiftLint/releases/latest),
 unzip it, and run it.
 
