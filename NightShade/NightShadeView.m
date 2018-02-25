@@ -13,9 +13,9 @@ static NSString * const KEY_SHOW_HEX_CODE = @"showHexCode";
 static NSString * const KEY_TIME_SEPARATOR_OPTION = @"timeSeparatorOption";
 
 typedef NS_ENUM(NSInteger, TimeSeparatorOption) {
-    TimeSeparatorOptionNeverShow = 0,
+    TimeSeparatorOptionAlwaysShow = 0,
     TimeSeparatorOptionFlash,
-    TimeSeparatorOptionAlwaysShow,
+    TimeSeparatorOptionNeverShow,
 };
 
 @interface NightShadeView ()
@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger, TimeSeparatorOption) {
 
         ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:MODULE_NAME];
         [defaults registerDefaults:@{KEY_SHOW_HEX_CODE: @YES,
-                                     KEY_TIME_SEPARATOR_OPTION: @(TimeSeparatorOptionNeverShow)}];
+                                     KEY_TIME_SEPARATOR_OPTION: @(TimeSeparatorOptionAlwaysShow)}];
 
         [self setShowsHexCode:[defaults boolForKey:KEY_SHOW_HEX_CODE]];
         [self setTimeSeparatorOption:[defaults integerForKey:KEY_TIME_SEPARATOR_OPTION]];

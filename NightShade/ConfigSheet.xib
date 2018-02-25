@@ -35,14 +35,14 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H4H-GZ-x5H">
                         <rect key="frame" x="18" y="61" width="115" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Never show" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="23F-n3-nad" id="OcD-FC-NZB">
+                        <popUpButtonCell key="cell" type="push" title="Always show" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="IUa-a9-ifG" id="OcD-FC-NZB">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="vtW-Iv-6p5">
                                 <items>
-                                    <menuItem title="Never show" state="on" id="23F-n3-nad"/>
+                                    <menuItem title="Always show" state="on" id="IUa-a9-ifG"/>
                                     <menuItem title="Flash" id="EI2-8V-Tql"/>
-                                    <menuItem title="Always show" id="IUa-a9-ifG"/>
+                                    <menuItem title="Never show" id="23F-n3-nad"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
