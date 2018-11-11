@@ -13,7 +13,7 @@ requires Flash, Night Shade has no dependencies.
 
 1. Make sure System Preferences is not running
 2. Download `NightShade.saver.zip` from
-[the latest GitHub release](https://github.com/realm/SwiftLint/releases/latest) and unzip it
+[the latest GitHub release](https://github.com/erikstrottmann/NightShade/releases/latest) and unzip it
 3. Open `Night Shade.saver` (by double-clicking it), which will open System Preferences
 4. Choose whether to install Night Shade for just the current user, or for all users on your computer
 
