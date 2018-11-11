@@ -77,6 +77,11 @@ typedef NS_ENUM(NSInteger, TimeSeparatorOption) {
 
 - (void)animateOneFrame
 {
+    [self setNeedsDisplay:YES];
+}
+
+- (void)drawRect:(NSRect)rect
+{
     NSDate *date = [NSDate date];
     NSColor *backgroundColor = [self backgroundColorFromDate:date];
     NSColor *foregroundColor = [self foregroundColorForBackgroundColor:backgroundColor];
